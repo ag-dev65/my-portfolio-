@@ -60,7 +60,7 @@ const setCvStatus = (message) => {
   });
 };
 
-fetch("assets/cv.pdf", { method: "HEAD" })
+fetch("CV_1.pdf", { method: "HEAD" })
   .then((response) => {
     const contentType = response.headers.get("content-type") || "";
     if (!response.ok || !contentType.includes("application/pdf")) {
@@ -71,14 +71,14 @@ fetch("assets/cv.pdf", { method: "HEAD" })
     setCvStatus("Your CV is ready to download.");
   })
   .catch(() => {
-    setCvStatus("Add your real PDF at assets/cv.pdf and serve the site locally to enable the download.");
+    setCvStatus("Could not check CV_1.pdf. Make sure the PDF is in the portfolio folder and serve the site locally.");
   });
 
 cvLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     if (!cvAvailable) {
       event.preventDefault();
-      setCvStatus("No CV is included yet. Add your own PDF at assets/cv.pdf to enable this download.");
+      setCvStatus("CV_1.pdf is not available yet. Make sure the PDF is in the portfolio folder and serve the site locally.");
     }
   });
 });
@@ -106,7 +106,7 @@ if (contactForm instanceof HTMLFormElement && formFeedback && contactAddress ins
     }
 
     const recipient = contactAddress.textContent.replace("↗", "").trim();
-    if (!recipient || recipient.includes("your.email@example.com")) {
+    if (!recipient || recipient.includes("alexonyenwenu3@gmail.com")) {
       formFeedback.textContent = "Please replace the placeholder email address in the page before using this form.";
       formFeedback.dataset.state = "error";
       return;
